@@ -74,14 +74,19 @@ class Map():
         self.updateAdjacent()
 
     def nextCoord(self):
-        for poss in range(1,4):
+        #We'll check for the ones with one possibility them with 2, and so on 
+        for poss in range(1,5):
+            #For each tiles of the map
             for x in range(23):
                 for y in range(40):
-                    if (self.map[x][y].possibility == poss and self.map[x][y].generated == False):
+                    #If they're the same amount of possibility we're checking for
+                    #And if it's isn't generated yet
+                    #print("coord : %d,%d | poss : %d | poss Of coord : %d | generated :"%(x,y,poss,len(self.map[x][y].possibility)),self.map[x][y].generated)
+                    if (len(self.map[x][y].possibility) == poss and self.map[x][y].generated == False):
                         self.coord = (x,y)
-
-        #Check the case with 2... and so on 
-        return
+                        return
+        print("Something went wrong !!!")
+        #quit()
     
     def updateAdjacent(self):
         testCoord = [self.coord[0],self.coord[1]]
