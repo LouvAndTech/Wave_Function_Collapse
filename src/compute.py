@@ -12,7 +12,7 @@ ImageList = {
 """====================== Rules ======================"""
     # Forest can go with Tree
     # Tree can go with Forest and Medow
-    # Grass can go with Tree and Sand
+    # Medow can go with Tree and Sand
     # Sand can go with Medow and Water
     # Water can go with Sand
 Rules = {
@@ -42,14 +42,14 @@ class Tile():
         self.generated = True
     
     def updatePossibility(self,adjacent):
-        print("Adjacent :",adjacent," | Old : ",self.possibility,end=" ")
+        #print("Adjacent :",adjacent," | Old : ",self.possibility,end=" ")
         for i in range(len(self.possibility)):
             if not isIn(Rules[adjacent],self.possibility[i]):
                 self.possibility[i] = "R"
-        print("| new : ",self.possibility,end='')
+        #print("| new : ",self.possibility,end='')
         while (isIn(self.possibility,"R")):
             self.possibility.remove("R")
-        print(" | final : ",self.possibility)
+        #print(" | final : ",self.possibility)
 
 class Map():
     def __init__(self):
