@@ -60,15 +60,28 @@ class Map():
         self.updateAdjacent()
     
     def addTile(self):
-        if self.coord[0]>=22:
-            self.coord = (0,self.coord[1]+1)
-        else : 
-            self.coord = (self.coord[0]+1,self.coord[1])
-        
+
+        #choose the next tile to fill 
+        #if self.coord[0]>=22:
+        #    self.coord = (0,self.coord[1]+1)
+        #else : 
+        #    self.coord = (self.coord[0]+1,self.coord[1])
+        self.nextCoord()
+
         #print("coord : ",self.coord)
         random = randint(0,len(self.map[self.coord[0]][self.coord[1]].possibility)-1)
         self.map[self.coord[0]][self.coord[1]].generate(random)
         self.updateAdjacent()
+
+    def nextCoord(self):
+        for poss in range(1,4):
+            for x in range(23):
+                for y in range(40):
+                    if (self.map[x][y].possibility == poss and self.map[x][y].generated == False):
+                        self.coord = (x,y)
+
+        #Check the case with 2... and so on 
+        return
     
     def updateAdjacent(self):
         testCoord = [self.coord[0],self.coord[1]]

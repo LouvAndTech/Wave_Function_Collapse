@@ -3,7 +3,7 @@ from compute import Map
 
 def generate_a_map():
     world = Map()
-    screen.printImage(world.map[0][0].imagePath,(0,0))
+    screen.printImage(world.map[world.coord[0]][world.coord[1]].imagePath,(world.coord[0],world.coord[1]))
     for i in range((40*23)-1):
         #for i in range(10):
         world.addTile()
